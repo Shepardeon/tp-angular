@@ -1,0 +1,15 @@
+<h2>Liste des pokémons:</h2>
+<div>
+    <mat-card>
+        <mat-list>
+            <mat-list-item *ngFor="let poke of pokemons">
+                <img matListAvatar src="assets/img/sprites/{{ poke.id }}.png" alt="{{ poke.name | lowercase }}">
+                <p matLine>
+                    <span>{{ poke.id }}. </span>
+                    <span> {{ poke.name }}</span>
+                </p>
+            </mat-list-item>
+        </mat-list>
+    </mat-card>
+</div>
+<!-- NEXT: https://bisonfoutu.github.io/ng-reveal/#/5/4 -->
