@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'sw-root',
+  selector: 'pok-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Welcome to Star Wars Heroes';
+  title = 'Pokédex Angular';
 }

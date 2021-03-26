@@ -139,13 +139,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "sw",
+      "pok",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "sw",
+      "pok",
       "kebab-case"
     ]
   }
