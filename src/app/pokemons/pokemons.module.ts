@@ -12,12 +12,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { PokemonsRoutingModule } from './pokemons-routing.module';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
 import { PokemonDetailComponent } from './components/pokemon-detail/pokemon-detail.component';
+import { PokedexComponent } from './components/pokedex/pokedex.component';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 @NgModule({
-  declarations: [PokemonListComponent, PokemonDetailComponent],
+  declarations: [PokemonListComponent, PokemonDetailComponent, PokedexComponent],
   imports: [
     CommonModule,
     HttpClientModule,
