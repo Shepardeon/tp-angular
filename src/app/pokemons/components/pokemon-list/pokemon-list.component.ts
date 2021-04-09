@@ -11,6 +11,7 @@ import { PokemonService } from '../../services/pokemon.service';
 export class PokemonListComponent implements OnInit {
 
   pokemons: Pokemon[] = []
+  offset: number
 
   constructor(
     private pokemonService: PokemonService
@@ -18,10 +19,18 @@ export class PokemonListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPokemons()
+    this.offset = this.pokemonService.limit;
   }
 
   getPokemons(): void {
     this.pokemonService.getPokemons().subscribe(result => this.pokemons = result.data)
+  }
+
+  onScroll(): void {
+    if (this.offset < this.pokemonService.maxOffset) {
+      this.pokemonService.getPokemonsOffset(this.offset).subscribe(result => this.pokemons = this.pokemons.concat(result.data))
+      this.offset += this.pokemonService.limit
+    }
   }
 
 }

@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 
 import { PagedData } from '../model/paged-data';
 import { Pokemon } from '../model/pokemon';
+import { PokemonFull } from '../model/pokemonFull';
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +14,31 @@ import { Pokemon } from '../model/pokemon';
 export class PokemonService {
 
   pokedexUrlApi: string = 'http://app-ec21e68e-3e55-42d7-b1ae-3eef7507a353.cleverapps.io'
+  limit: number = 20
+  maxOffset: number = 151
 
   constructor(
     private http: HttpClient
   ) { }
 
   getPokemons(): Observable<PagedData<Pokemon>> {
-    let url = `${this.pokedexUrlApi}/pokemons`
+    let url = `${this.pokedexUrlApi}/pokemons?limit=${this.limit}`
     return this.http.get<PagedData<Pokemon>>(url).pipe(
       catchError(this.handleError<PagedData<Pokemon>>("getPokemons"))
+    )
+  }
+
+  getPokemonsOffset(offset: number): Observable<PagedData<Pokemon>> {
+    let url = `${this.pokedexUrlApi}/pokemons?limit=${this.limit}&offset=${offset}`
+    return this.http.get<PagedData<Pokemon>>(url).pipe(
+      catchError(this.handleError<PagedData<Pokemon>>("getPokemons"))
+    )
+  }
+
+  getPokemon(id: number): Observable<PokemonFull> {
+    let url = `${this.pokedexUrlApi}/pokemons/${id}`
+    return this.http.get<PokemonFull>(url).pipe(
+      catchError(this.handleError<PokemonFull>("getPokemon"))
     )
   }
 

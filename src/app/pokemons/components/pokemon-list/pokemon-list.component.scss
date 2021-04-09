@@ -1,0 +1,9 @@
+a {
+    text-decoration: none;
+}
+
+mat-list:hover {
+    background-color: #353535;
+    padding-left: 1em;
+    transition: 0.1s padding ease-in;
+}

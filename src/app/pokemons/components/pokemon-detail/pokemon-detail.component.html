@@ -1,0 +1,56 @@
+<nav style="margin-left: 1em;">
+    <button mat-raised-button color="primary" (click)="goBack()">Go back</button>
+</nav>
+
+<ng-container *ngIf="pokemon">
+    <mat-card>
+        <mat-grid-list cols="2">
+            <!-- Image + Number -->
+            <mat-grid-tile colspan="1" rowspan="1">
+                <mat-list>
+                    <mat-list-item>
+                        <img src="assets/img/official-artwork/{{ pokemon.id }}.png" alt="{{ pokemon.name }}.png">
+                    </mat-list-item>
+                    <mat-list-item style="margin-top: 2em;">
+                        <p style="width:100%;">No. {{ pokemon.id | number: '3.0' }}</p>
+                    </mat-list-item>
+                </mat-list>
+            </mat-grid-tile>
+
+            <!-- Main infos -->
+            <mat-grid-tile colspan="1" rowspan="1">
+                <mat-list>
+                    <mat-list-item>
+                        <p>
+                            {{ pokemon.name }}
+                            <button mat-icon-button onclick="document.getElementById('pokeAudio').play()">
+                                <mat-icon>play_circle</mat-icon>
+                                <audio id="pokeAudio" autoplay>
+                                    <source src="assets/audio/{{ pokemon.id }}.mp3" type="audio/mpeg">
+                                </audio>
+                            </button>
+                        </p>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <mat-chip-list>
+                            <mat-chip *ngFor="let type of pokemon.types">
+                                {{ type }}
+                            </mat-chip>
+                        </mat-chip-list>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <p>Taille: {{ pokemon.height | number: '1.1-1' }} m</p>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <p>Poids: {{ pokemon.weight | number: '1.1-1' }} kg</p>
+                    </mat-list-item>
+                </mat-list>
+            </mat-grid-tile>
+
+            <!-- Description -->
+            <mat-grid-tile colspan="2" rowspan="1">
+                <p>{{ pokemon.description }}</p>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-card>
+</ng-container>
