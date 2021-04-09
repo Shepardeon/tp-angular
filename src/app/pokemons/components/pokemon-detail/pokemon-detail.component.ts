@@ -2,7 +2,6 @@ import { Location } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Pokemon } from '../../model/pokemon';
 import { PokemonFull } from '../../model/pokemonFull';
 import { PokemonService } from '../../services/pokemon.service';
 
@@ -13,8 +12,7 @@ import { PokemonService } from '../../services/pokemon.service';
 })
 export class PokemonDetailComponent implements OnInit {
   
-  @Input() poke: Pokemon;
-  pokemon: PokemonFull;
+  @Input() pokemon: PokemonFull
 
   constructor(
     private route: ActivatedRoute,
@@ -23,7 +21,8 @@ export class PokemonDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getPokemon()
+    if (this.pokemon)
+      this.getPokemon()
   }
 
   getPokemon(): void {

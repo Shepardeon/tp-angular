@@ -1,16 +1,16 @@
-<h2>Liste des pokémons:</h2>
-<div>
-    <mat-card infinite-scroll (scrolled)="onScroll()">
-        <mat-list *ngFor="let poke of pokemons">
-            <a routerLink="/pokedex/{{ poke.id }}">
-                <mat-list-item>
-                    <img matListAvatar src="assets/img/sprites/{{ poke.id }}.png" alt="{{ poke.name | lowercase }}">
-                    <p matLine>
-                        <span>{{ poke.id }}. </span>
-                        <span> {{ poke.name }}</span>
-                    </p>
-                </mat-list-item>
-            </a>
-        </mat-list>
-    </mat-card>
-</div>
+<form style="padding:5px;">
+    <mat-form-field>
+        <mat-label>Rechercher un pokémon</mat-label>
+        <input #searchBox matInput placeholder="Nom ou numéro" (input)="search(searchBox.value)">
+    </mat-form-field>
+</form>
+
+<mat-nav-list class="scroll-holder" infiniteScroll (scrolled)="onScroll()" [scrollWindow]="false">
+        <mat-list-item *ngFor="let poke of pokemons" (click)="onClick(poke.id)">
+        <img matListAvatar src="assets/img/sprites/{{ poke.id }}.png" alt="{{ poke.name | lowercase }}">
+        <p matLine>
+            <span>{{ poke.id }}. </span>
+            <span> {{ poke.name }}</span>
+        </p>
+    </mat-list-item>
+</mat-nav-list>

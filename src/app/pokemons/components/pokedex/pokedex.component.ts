@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Pokemon } from '../../model/pokemon';
+import { PokemonService } from '../../services/pokemon.service';
 
 @Component({
   selector: 'pok-pokedex',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PokedexComponent implements OnInit {
 
-  constructor() { }
+  pokemon: Pokemon
+
+  constructor(
+    private pokemonService: PokemonService
+  ) { }
 
   ngOnInit(): void {
   }
 
+  onPokemonClick(id: number) {
+    this.pokemonService.getPokemon(id).subscribe((result) => {
+      this.pokemon = result
+    })
+  }
 }

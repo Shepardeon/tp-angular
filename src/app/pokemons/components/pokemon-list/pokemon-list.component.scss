@@ -1,9 +1,19 @@
 a {
+    display: inherit;
     text-decoration: none;
+    color: #fff
 }
 
-mat-list:hover {
+a>p {
+    margin: auto;
+    padding: 0 15px 0 0;
+}
+
+a:hover {
     background-color: #353535;
-    padding-left: 1em;
-    transition: 0.1s padding ease-in;
+}
+
+.scroll-holder {
+    height: calc(100% - 75px);
+    overflow: auto;
 }

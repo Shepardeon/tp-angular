@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 import { Pokemon } from '../../model/pokemon';
 import { PokemonService } from '../../services/pokemon.service';
@@ -12,6 +13,9 @@ export class PokemonListComponent implements OnInit {
 
   pokemons: Pokemon[] = []
   offset: number
+
+  @Output() pokemonEmitter = new EventEmitter();
+  pokeControl = new FormControl();
 
   constructor(
     private pokemonService: PokemonService
@@ -31,6 +35,18 @@ export class PokemonListComponent implements OnInit {
       this.pokemonService.getPokemonsOffset(this.offset).subscribe(result => this.pokemons = this.pokemons.concat(result.data))
       this.offset += this.pokemonService.limit
     }
+  }
+
+  onClick(id: number): void {
+    this.pokemonEmitter.emit(id)
+  }
+
+  search(value: string): void {
+    if (value) {
+      this.pokemonService.getPokemonSearch(value).subscribe(result => this.pokemons = result.data)
+      return
+    }
+    this.getPokemons()
   }
 
 }

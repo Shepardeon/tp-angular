@@ -1,7 +1,3 @@
-<nav style="margin-left: 1em;">
-    <button mat-raised-button color="primary" (click)="goBack()">Go back</button>
-</nav>
-
 <ng-container *ngIf="pokemon">
     <mat-card>
         <mat-grid-list cols="2">
@@ -25,9 +21,7 @@
                             {{ pokemon.name }}
                             <button mat-icon-button onclick="document.getElementById('pokeAudio').play()">
                                 <mat-icon>play_circle</mat-icon>
-                                <audio id="pokeAudio" autoplay>
-                                    <source src="assets/audio/{{ pokemon.id }}.mp3" type="audio/mpeg">
-                                </audio>
+                                <audio id="pokeAudio" src="assets/audio/{{ pokemon.id }}.mp3" type="audio/mpeg" autoplay></audio>
                             </button>
                         </p>
                     </mat-list-item>

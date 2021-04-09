@@ -17,6 +17,8 @@ export class PokemonService {
   limit: number = 20
   maxOffset: number = 151
 
+  selectedPokemon: PokemonFull
+
   constructor(
     private http: HttpClient
   ) { }
@@ -31,7 +33,7 @@ export class PokemonService {
   getPokemonsOffset(offset: number): Observable<PagedData<Pokemon>> {
     let url = `${this.pokedexUrlApi}/pokemons?limit=${this.limit}&offset=${offset}`
     return this.http.get<PagedData<Pokemon>>(url).pipe(
-      catchError(this.handleError<PagedData<Pokemon>>("getPokemons"))
+      catchError(this.handleError<PagedData<Pokemon>>("getPokemonsOffset"))
     )
   }
 
@@ -39,6 +41,13 @@ export class PokemonService {
     let url = `${this.pokedexUrlApi}/pokemons/${id}`
     return this.http.get<PokemonFull>(url).pipe(
       catchError(this.handleError<PokemonFull>("getPokemon"))
+    )
+  }
+
+  getPokemonSearch(value: string): Observable<PagedData<Pokemon>> {
+    let url = `${this.pokedexUrlApi}/pokemons?search=${value}` // c'est mal
+    return this.http.get<PagedData<Pokemon>>(url).pipe(
+      catchError(this.handleError<PagedData<Pokemon>>("getPokemonSearch"))
     )
   }
 

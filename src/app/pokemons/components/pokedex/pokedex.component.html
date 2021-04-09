@@ -1,1 +1,8 @@
-<p>pokedex works!</p>
+<mat-sidenav-container style="height:calc(100% - 48px);overflow:auto;">
+    <mat-sidenav opened mode="side">
+        <pok-pokemon-list (pokemonEmitter)="onPokemonClick($event)"></pok-pokemon-list>
+    </mat-sidenav>
+    <mat-sidenav-content style="margin-left: 217px;">
+        <pok-pokemon-detail [pokemon]="pokemon"></pok-pokemon-detail>
+    </mat-sidenav-content>
+</mat-sidenav-container>
